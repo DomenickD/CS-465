@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Dive Sites - Bhaccasyoniztas Beach Resort Website Template</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
+
 <body>
 	<div id="background">
 		<div id="page">
@@ -16,13 +18,13 @@
 						<div class="body">
 							<h1>Travel</h1>
 							<ul id="sites">
-			{{#each trips}}
+								{{#each trips}}
 								<li>
-									<a href="/travel"><img src="{{this.image}}" alt="Img"></a>
+									<a href="/api/trips/{{this.code}}"><img src="{{this.image}}" alt="Img"></a>
 									<h2><a href="/travel">{{this.name}}</a></h2>
 									{{{this.description}}}
 								</li>
-			{{/each}}
+								{{/each}}
 							</ul>
 						</div>
 					</div>
@@ -32,4 +34,5 @@
 		{{> footer}}
 	</div>
 </body>
+
 </html>
