@@ -3,12 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var travelRouter = require('./app_server/routes/travel');
 var apiRouter = require('./app_api/routes/index');
-
 
 var handlebars = require('hbs');
 
@@ -31,6 +31,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//CORS given by course but may not be working
+// app.use('/api', (req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+// res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+
+// });
+// Enable CORS for all routes
+app.use(cors({
+  origin: 'http://localhost:4200',  // Allow requests from your Angular app
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept'
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
